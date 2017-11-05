@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(FLTKUI LANGUAGES C CXX VERSION 0.5 DESCRIPTION "FLTK module for UniversalUI")
+find_package(FLTK REQUIRED)
+include_directories(${FLTK_INCLUDE_DIRS})
+
+file(GLOB_RECURSE FLTKUI_HDRS "include/*.hpp")
+file(GLOB_RECURSE FLTKUI_SRCS "src/*.cpp")
+
+configure_file( ${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_SOURCE_DIR}/include/config.h)
+add_library(FLTKUI STATIC ${FLTKUI_HDRS} ${FLTKUI_SRCS})
+target_link_libraries(FLTKUI ${FLTK_LIBRARIES})
+set_target_properties(FLTKUI PROPERTIES SOVERSION 1)
+target_include_directories(FLTKUI PUBLIC include)
