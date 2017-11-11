@@ -15,7 +15,7 @@ void FLTKUI::set(std::string command, callback_function callback)
 
 void FLTKUI::run(std::string command, void *obj)
 {
-	uui::UI::ui_commands->operator[](command)(uui::UI::get_instance(), obj);
+	uui::UI::ui_commands->operator[](command)(uui::UI::instance, obj);
 }
 
 void FLTKUI::error(std::string msg, std::string ok_msg)
