@@ -7,15 +7,27 @@ FLTKUI::FLTKUI()
 	Fl::run();
 }
 
-void FLTKUI::set(std::string command, callback_function callback)
+
+template <typename... T>
+void FLTKUI::set(std::string name, UI::callback<T...> cb, std::vector<std::string> *input_info)
 {
-	uui::UI::ui_commands->emplace(std::make_pair(command, callback));
-	//add callback function to command dictionary
+	commands<T...>.insert(std::make_pair(name, cb));
+	for(const std::string& s : *input_info)
+	{
+		//
+	}
 }
 
-void FLTKUI::run(std::string command, void *obj)
+template <typename... T>
+void FLTKUI::run(std::string name, T... t)
 {
-	uui::UI::ui_commands->operator[](command)(uui::UI::instance, obj);
+	std::cout << "Launching Predefined function" << endl;
+	UI::callback<T...> cb = commands<T...>[name];	
+	if(cb == nullptr)
+	{
+		log_fat("TAG", "Empty callback");
+	}
+	cb(new UI(), t...); 
 }
 
 void FLTKUI::error(std::string msg, std::string ok_msg)

@@ -13,16 +13,18 @@
 using namespace std;
 using namespace uui;
 namespace uui {
-class FLTKUI: public UI
+class FLTKUI : public UI
 {
 	private:
 		Fl_Window *window = nullptr;
 	public:
-	FLTKUI();
-	virtual void set(std::string, void (*)(UI *, void *)) override;
-	virtual void run(std::string, void * = nullptr) override;
-	virtual void error(std::string, std::string="OK") override;
-	virtual void alert(std::string, UI::action=PROMPT, std::string="OK", std::string="Cancel") override;
+		FLTKUI(); 
+		template <typename... T>
+		void set(std::string, callback<T...>, std::vector<std::string> *);
+		template <typename... T>
+		void run(std::string, T...);
+		virtual void error(std::string, std::string="OK");;
+		virtual void alert(std::string, UI::action=PROMPT, std::string="OK", std::string="Cancel");
 };
 }
 #endif
