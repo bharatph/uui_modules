@@ -19,12 +19,10 @@ class FLTKUI : public UI
 		Fl_Window *window = nullptr;
 	public:
 		FLTKUI(); 
-		template <typename... T>
-		void set(std::string, callback<T...>, std::vector<std::string> *);
-		template <typename... T>
-		void run(std::string, T...);
-		virtual void error(std::string, std::string="OK");;
-		virtual void alert(std::string, UI::action=PROMPT, std::string="OK", std::string="Cancel");
+		void set(std::string, std::vector<std::string> *, callback) override;
+		void run(std::string, void *) override;
+		virtual void error(std::string, std::string="OK") override;
+		virtual void alert(std::string, UI::action=PROMPT, std::string="OK", std::string="Cancel") override;
 };
 }
 #endif

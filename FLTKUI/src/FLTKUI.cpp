@@ -1,42 +1,39 @@
 #include<FLTKUI.hpp>
 #include<clog/clog.h>
 
-FLTKUI::FLTKUI()
+uui::FLTKUI::FLTKUI()
 {
 	window = new Fl_Window(340, 180);
 	Fl::run();
 }
 
-
-template <typename... T>
-void FLTKUI::set(std::string name, UI::callback<T...> cb, std::vector<std::string> *input_info)
+void uui::FLTKUI::set(std::string name, std::vector<std::string> *input_info, callback cb)
 {
-	commands<T...>.insert(std::make_pair(name, cb));
+	commands->insert(std::make_pair(name, cb));
 	for(const std::string& s : *input_info)
 	{
 		//
 	}
 }
 
-template <typename... T>
-void FLTKUI::run(std::string name, T... t)
+void uui::FLTKUI::run(std::string name, void *args)
 {
-	std::cout << "Launching Predefined function" << endl;
-	UI::callback<T...> cb = commands<T...>[name];	
+	log_inf("FLTKUI::set", "Launching predefined functions");
+	uui::callback cb = (*commands)[name];	
 	if(cb == nullptr)
 	{
-		log_fat("TAG", "Empty callback");
+		log_fat("FLTKUI::set", "Empty callback");
 	}
-	cb(new UI(), t...); 
+	cb(this->instance, args); 
 }
 
-void FLTKUI::error(std::string msg, std::string ok_msg)
+void uui::FLTKUI::error(std::string msg, std::string ok_msg)
 {
 	switch(fl_choice(msg.c_str(), ok_msg.c_str(), 0, 0));
 
 }
 
-void FLTKUI::alert(std::string msg, UI::action ac, std::string ok_msg, std::string cancel_msg)
+void uui::FLTKUI::alert(std::string msg, UI::action ac, std::string ok_msg, std::string cancel_msg)
 {
 	switch(fl_choice(msg.c_str(), ok_msg.c_str(), cancel_msg.c_str(), 0))
 	{

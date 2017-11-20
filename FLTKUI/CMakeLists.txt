@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.0)
 
 project(FLTKUI LANGUAGES C CXX VERSION 0.5 DESCRIPTION "Console module for UniversalUI")
 
-set(CMAKE_CXX_STANDARD 14)
-
 find_package(FLTK REQUIRED)
 include_directories(${FLTK_INCLUDE_DIRS})
 

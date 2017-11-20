@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.0)
 
 project(CharacterUI LANGUAGES C CXX VERSION 0.5 DESCRIPTION "Console module for UniversalUI")
 
-set(CMAKE_CXX_STANDARD 14)
-
 file(GLOB_RECURSE CharacterUI_HDRS "include/*.hpp")
 file(GLOB_RECURSE CharacterUI_SRCS "src/*.cpp")
 
