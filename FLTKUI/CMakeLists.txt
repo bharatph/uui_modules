@@ -9,7 +9,7 @@ file(GLOB_RECURSE FLTKUI_HDRS "include/*.hpp")
 file(GLOB_RECURSE FLTKUI_SRCS "src/*.cpp")
 
 configure_file( ${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_SOURCE_DIR}/include/config.h)
-add_library(FLTKUI SHARED ${FLTKUI_HDRS} ${FLTKUI_SRCS})
+add_library(FLTKUI STATIC ${FLTKUI_HDRS} ${FLTKUI_SRCS})
 set_target_properties(FLTKUI PROPERTIES SOVERSION 1)
 target_include_directories(FLTKUI PUBLIC include)
 target_link_libraries(FLTKUI clog)
