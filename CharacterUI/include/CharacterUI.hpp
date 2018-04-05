@@ -1,5 +1,5 @@
 #include <iostream>
-#include <UniversalUI.hpp>
+#include <UI.hpp>
 
 #include "config.h"
 
@@ -14,9 +14,9 @@ class CharacterUI : public UI
 
   public:
 	static CharacterUI *getInstance();
-	virtual void error(std::string msg, std::string ok_msg = "OK") /*override*/;
+	virtual void error(std::string msg, std::string ok_msg = "OK") override;
 	virtual int alert(std::string, uui::action = PROMPT, std::string = "OK",
-					  std::string = "Cancel") /*override*/;
+					  std::string = "Cancel") override;
 
   protected:
 	CharacterUI();

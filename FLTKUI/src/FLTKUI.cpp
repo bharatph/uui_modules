@@ -1,6 +1,16 @@
 #include <FLTKUI.hpp>
 #include <clog/clog.h>
 
+uui::FLTKUI *uui::FLTKUI::instance =nullptr;
+
+
+uui::FLTKUI *uui::FLTKUI::getInstance(){
+  if(instance == nullptr){
+    instance = new FLTKUI();
+  }
+  return instance;
+}
+
 uui::FLTKUI::FLTKUI() {
   // if(cannot_open_display_devices)switch_to_cli;
   window = new Fl_Window(340, 180);
@@ -55,4 +65,4 @@ int uui::FLTKUI::alert(std::string msg, uui::action ac, std::string ok_msg,
                        std::string cancel_msg) {
   return fl_choice(msg.c_str(), ok_msg.c_str(), cancel_msg.c_str(), 0);
 }
-void uui::FLTKUI::exit() { ::exit(0); }
+void uui::FLTKUI::close() { window->hide(); }

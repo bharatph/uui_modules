@@ -23,4 +23,5 @@ int uui::CharacterUI::alert(std::string msg, uui::action ac, std::string ok_msg,
 							std::string cancel_msg)
 {
 	std::cout << msg << std::endl;
+	return 0;
 }
